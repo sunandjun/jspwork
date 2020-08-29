@@ -4722,5 +4722,17 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+    
+    <!--  HttpServlet 타입만 new 해줌 -->
+    <!-- HttpServlet ConController = new com.cos.controller.FrontController(); -->
+    <servlet>
+    	<servlet-name>frontController</servlet-name>
+    	<servlet-class>com.cos2.controller.FrontController</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>frontController</servlet-name>
+    	<url-pattern>*.do</url-pattern> <!-- /* 하면 모든 주소요청 -->
+    </servlet-mapping>
 
 </web-app>
