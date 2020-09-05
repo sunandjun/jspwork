@@ -15,6 +15,7 @@ public class FrontController extends HttpServlet{
 		// TODO Auto-generated method stub
 		String uri = req.getRequestURI();
 		HttpSession session = req.getSession();
+		PrintWriter pw = resp.getWriter();
 		System.out.println("uri = " + uri);
 		
 		if(uri.equals("/")) {
@@ -29,27 +30,28 @@ public class FrontController extends HttpServlet{
 		}else if(uri.equals("/main.do")) {
 			resp.sendRedirect("main.jsp");
 		}else if(uri.equals("/info.do")) {
-			PrintWriter pw = resp.getWriter();
+			
 			if(session.getAttribute("auth")==null){
-				pw.print("<script>alert('auth no'); </script>");
-				pw.flush();
-				resp.sendRedirect("main.jsp");
+				//pw.print("<script>alert('auth no'); </script>");
+				//pw.flush();
+				myAlert(pw,"auth no","main.do");
+				//resp.sendRedirect("main.jsp");
 				return;
 			}
 			boolean isLogin = (boolean)session.getAttribute("auth");
 			if(isLogin){
-				pw.print("<h2>인증된 사용자 입니다.</h2>");
-				pw.flush();
+				resp.sendRedirect("info.jsp");
 			}
-			resp.sendRedirect("info.jsp");
+			
 		}
-	}
+	}//doGet()
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String uri = req.getRequestURI();
 		HttpSession session = req.getSession();
+		PrintWriter pw = resp.getWriter();
 		System.out.println("uri = " + uri);
 		
 		
@@ -60,9 +62,9 @@ public class FrontController extends HttpServlet{
 			if(username.equals("ssar")&&password.equals("1234")){
 				session.setAttribute("auth", true);
 			}else {
-				PrintWriter pw = resp.getWriter();
-				pw.print("<script> alert('Login is not!!');</script>");
-				pw.flush();
+				myAlert(pw,"Login is not!!",null);
+				//pw.print("<script> alert('Login is not!!');</script>");
+				//pw.flush();
 				return;
 			}
 			resp.sendRedirect("main.jsp");
@@ -76,7 +78,20 @@ public class FrontController extends HttpServlet{
 			session.setAttribute("auth", true);//세션에 값을 저장 
 			resp.sendRedirect("main.jsp");
 		}
-	}
+	}//doPost()
 	
+	
+	//나의 경고창 함수
+	private void myAlert(PrintWriter pw,String str, String page) {
+		System.out.println("myAlert : pw = "+pw +" str = "+str+" page : " +page);
+		pw.println("<script>");
+		pw.println("alert('"+str+"');");
+		if(page == null) {
+			pw.println("history.back();");
+		}else {
+			pw.println("location.href='"+page+"';");
+		}
+		pw.println("</script>");		
+	}//myAlert()
 
 }
