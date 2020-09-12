@@ -4632,16 +4632,7 @@
 
 	<!-- HttpServlet 타입만 new 해줌 -->
 	<!-- HttpServlet ConController = new com.cos.controller.FrontController(); -->
-	<servlet>
-		<servlet-name>frontController</servlet-name>
-		<servlet-class>com.cos2.controller.FrontController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>frontController</servlet-name>
-		<url-pattern>*.do</url-pattern> <!-- /* 하면 모든 주소요청 -->
-	</servlet-mapping>
-
+	
 	<description>MySQL Test App</description>
 	<resource-ref>
 		<description>DB Connection</description>
@@ -4649,5 +4640,16 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+	
+	<filter>
+		<filter-name>CharEncFilter</filter-name>
+		<filter-class>com.cos.blog.config.CharEncFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>CharEncFilter</filter-name>
+		<url-pattern>*.do</url-pattern> <!-- /* 은 모든 요청 -->
+	</filter-mapping>
+	
 
 </web-app>
