@@ -4648,7 +4648,7 @@
 	
 	<filter-mapping>
 		<filter-name>CharEncFilter</filter-name>
-		<url-pattern>*.do</url-pattern> <!-- /* 은 모든 요청 -->
+		<url-pattern>/*</url-pattern> <!-- /* 은 모든 요청 -->
 	</filter-mapping>
 	
 
