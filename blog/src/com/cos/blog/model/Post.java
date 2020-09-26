@@ -11,7 +11,12 @@ public class Post {
 	
 	private int userId;
 	
-	
+	public Post(String title,String content,int readCount,int userId) {
+		this.title = title;
+		this.content = content;
+		this.userId = userId;
+		this.readCount = readCount;
+	}
 
 	public Post(int id, String title, String content, int readCount, Timestamp createDate, int userId) {
 		super();
