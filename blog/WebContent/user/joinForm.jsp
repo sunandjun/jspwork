@@ -21,6 +21,7 @@
 
 		<div class="form-group">
 			<label >주소:</label> 
+			<button type="button" class="btn btn-warning float-rigth">주소검색</button>
 			<input type="text" class="form-control" placeholder="Enter 주소" name="address"/>
 		</div>
 

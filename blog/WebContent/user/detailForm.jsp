@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
 
-<h1>UserDetailForm.jsp</h1>
+<h1>DetailForm</h1>
 
 <%@ include file="../layout/footer.jsp" %>

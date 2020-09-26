@@ -14,13 +14,13 @@ public class UserDao {
 					+ "VALUES	 (?,?,?,?,NOW()) ";
 		Connection conn = DBConn.getInstance();
 		try {
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, user.getUsername());
-		pstmt.setString(2, user.getPassword());
-		pstmt.setString(3, user.getEmail());
-		pstmt.setString(4, user.getAddress());
-		
-		return pstmt.executeUpdate();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getPassword());
+			pstmt.setString(3, user.getEmail());
+			pstmt.setString(4, user.getAddress());
+			
+			return pstmt.executeUpdate();
 		
 		}catch (Exception e) {
 		// TODO: handle exception
@@ -54,5 +54,26 @@ public class UserDao {
 		} 		
 		
 		return null;
+	}
+	
+	public int 회원수정(User user) {
+		String sql = "UPDATE user SET password=?,email =?,address =? ,createDate=now()"
+					+"WHERE id=?";
+		
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getPassword());
+			pstmt.setString(2, user.getEmail());
+			pstmt.setString(3, user.getAddress());
+			pstmt.setInt(4,user.getId());
+			 
+			return  pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("회원수정 error : " + e.getMessage());
+		} 			
+		return -1;
 	}
 }

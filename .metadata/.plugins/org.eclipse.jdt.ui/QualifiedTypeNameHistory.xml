@@ -5,12 +5,22 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="javax.naming.Context"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="javax.sql.DataSource"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="javax.servlet.Filter"/>
-<fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="com.cos.blog.model.Post"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="java.sql.Timestamp"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.cos.blog.config.DBConn"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="com.cos.blog.model.User"/>
+<fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="com.cos.blog.dao.UserDao"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="com.cos.blog.config.action.UserJoinProcAction"/>
+<fullyQualifiedTypeName name="com.cos.blog.config.action.UserLoginProcAction"/>
+<fullyQualifiedTypeName name="com.cos.blog.config.action.UserLogoutAction"/>
+<fullyQualifiedTypeName name="com.cos.blog.config.action.Action"/>
 </qualifiedTypeNameHistroy>
