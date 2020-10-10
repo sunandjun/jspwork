@@ -47,7 +47,7 @@ public class PostSaveProcAction implements Action{
 		int n = dao.글쓰기(post);
 		
 		if(n == 1) {
-			response.sendRedirect("/post/list.jsp");
+			response.sendRedirect("/post?cmd=list");
 		}
 		
 	}

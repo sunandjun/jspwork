@@ -4630,26 +4630,5 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- HttpServlet 타입만 new 해줌 -->
-	<!-- HttpServlet ConController = new com.cos.controller.FrontController(); -->
-	
-	<description>MySQL Test App</description>
-	<resource-ref>
-		<description>DB Connection</description>
-		<res-ref-name>jdbc/TestDB</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
-	<filter>
-		<filter-name>CharEncFilter</filter-name>
-		<filter-class>com.cos.blog.config.CharEncFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>CharEncFilter</filter-name>
-		<url-pattern>/*</url-pattern> <!-- /* 은 모든 요청 -->
-	</filter-mapping>
-	
 
 </web-app>

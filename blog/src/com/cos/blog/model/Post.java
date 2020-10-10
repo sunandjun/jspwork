@@ -11,6 +11,10 @@ public class Post {
 	
 	private int userId;
 	
+	public Post() {
+		
+	}
+	
 	public Post(String title,String content,int readCount,int userId) {
 		this.title = title;
 		this.content = content;

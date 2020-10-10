@@ -11,7 +11,7 @@ import com.cos.blog.model.Post;
 
 public class PostDao {
 	public int 글쓰기(Post post) {
-		String sql = "INSERT INTO post(title,content,readCount,createDate,userId) "
+		String sql = "INSERT INTO post (title,content,readCount,createDate,userId) "
 				+ "VALUES	 (?,?,?,NOW(),?) ";
 		Connection conn = DBConn.getInstance();
 		try {
@@ -81,5 +81,63 @@ public class PostDao {
 		
 		
 		return null;
+	}
+	
+	public Post 상세보기(int id) {
+		String sql = "SELECT * FROM post WHERE id = ?";  
+		Post post = new Post();
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				post.setId(rs.getInt("id"));
+				post.setTitle(rs.getString("title"));
+				post.setContent(rs.getString("content"));						
+				post.setReadCount(rs.getInt("readCount"));
+				post.setCreateDate(rs.getTimestamp("createDate"));
+				post.setUserId(rs.getInt("userId"));											
+			}			
+			return post;
+		
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("상세보기 error : " + e.getMessage());
+		} 			
+		return null;
+	}
+	
+	public int 조회수증가(int id) {
+		String sql = "UPDATE post SET readCount = readCount +1 WHERE  id=? ";
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			return pstmt.executeUpdate();
+		
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("조회수증가" + e.getMessage());
+		} 			
+		return -1;
+	}
+	public int 삭제하기(int id) {
+		String sql = "DELETE FROM post WHERE id=?";
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			return pstmt.executeUpdate();
+		
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("삭제하기" + e.getMessage());
+		} 			
+		return -1;
 	}
 }
