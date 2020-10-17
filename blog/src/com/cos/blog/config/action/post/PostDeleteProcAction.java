@@ -28,7 +28,7 @@ public class PostDeleteProcAction implements Action{
 		response.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		//postdao 연결
-		PostDao dao = new PostDao();
+		PostDao dao = PostDao.getInstance();
 		int result = dao.삭제하기(id);
 				
 		if(result == 1) {

@@ -9,6 +9,13 @@ import com.cos.blog.model.User;
 import com.mysql.cj.protocol.Resultset;
 
 public class UserDao {
+	
+	private static UserDao instance = new UserDao();
+	public static UserDao getInstance() {
+		return instance;
+	}	
+	private UserDao() {}
+	
 	public int 회원가입(User user) {
 		String sql = "INSERT INTO user(username,password,email,address,createDate) "
 					+ "VALUES	 (?,?,?,?,NOW()) ";
@@ -39,12 +46,16 @@ public class UserDao {
 
 			ResultSet rs =  pstmt.executeQuery();
 			if(rs.next()) {
-				User userEntity = new User(
-									rs.getInt("id"),
-									rs.getString("username"),
-									rs.getString("email"),
-									rs.getString("address")
-									);
+				/*
+				 * User userEntity = new User( rs.getInt("id"), rs.getString("username"),
+				 * rs.getString("email"), rs.getString("address") );
+				 */
+				User userEntity = User.builder()
+						.id(rs.getInt("id"))
+						.username(rs.getString("username"))
+						.email(rs.getString("email"))
+						.address(rs.getString("address"))
+						.build();
 				return userEntity;
 			}
 		

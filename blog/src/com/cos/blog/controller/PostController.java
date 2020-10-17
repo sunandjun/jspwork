@@ -14,6 +14,8 @@ import com.cos.blog.config.action.post.PostDetailAction;
 import com.cos.blog.config.action.post.PostListAction;
 import com.cos.blog.config.action.post.PostSaveFormAction;
 import com.cos.blog.config.action.post.PostSaveProcAction;
+import com.cos.blog.config.action.post.PostUpdateFormAction;
+import com.cos.blog.config.action.post.PostUpdateProcAction;
 
 //http://localhost:8080/blog/ffidfdf.do
 //모든 .do 요청은 FrontController를 탄다.
@@ -29,7 +31,7 @@ public class PostController extends HttpServlet {
     void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    	 System.out.println("/post 요청됨");
 		String cmd = request.getParameter("cmd");
-		//System.out.println("cmd = " + cmd);
+		System.out.println("cmd = " + cmd);
 		 		
 		Action action = route(cmd);
 		if(action != null)action.execute(request, response);
@@ -46,7 +48,11 @@ public class PostController extends HttpServlet {
  			return new PostDetailAction();
  		}else if(cmd.equals("deleteProc")) {
  			return new PostDeleteProcAction();
- 		}  
+ 		}else if(cmd.equals("updateForm")) {
+ 			return new PostUpdateFormAction();
+ 		}else if(cmd.equals("updateProc")) {
+ 			return new PostUpdateProcAction();
+ 		}   
    	 return null;
     }
    

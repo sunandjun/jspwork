@@ -41,9 +41,15 @@ public class PostSaveProcAction implements Action{
 		title = title.replaceAll("<", "&lt;");
 		title = title.replaceAll(">", "&gt;");
 		
-		Post post = new Post(title,content,0,userId);
+		//Post post = new Post(title,content,0,userId);
+		Post post = Post.builder()
+				.title(title)
+				.content(content)
+				.readCount(0)
+				.userId(userId)
+				.build();
 		
-		PostDao dao = new PostDao();
+		PostDao dao =  PostDao.getInstance();
 		int n = dao.글쓰기(post);
 		
 		if(n == 1) {

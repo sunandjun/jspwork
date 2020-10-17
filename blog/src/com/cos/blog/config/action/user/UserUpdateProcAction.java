@@ -57,11 +57,18 @@ public class UserUpdateProcAction implements Action {
 		System.out.println("email = " + email);
 		System.out.println("address = " + address);
 		
-		User user = new User(
-				id, username, password, email, address,null
-				);
+		/*
+		 * User user = new User( id, username, password, email, address,null );
+		 */
+		User user = User.builder()
+				.id(id)
+				.username(username)
+				.password(password)
+				.email(email)
+				.address(address)
+				.build();
 		
-		UserDao dao = new UserDao();
+		UserDao dao = UserDao.getInstance();
 		int result = dao.회원수정(user);
 		
 		if(result == 1) {

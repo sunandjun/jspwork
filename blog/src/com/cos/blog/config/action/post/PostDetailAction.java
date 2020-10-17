@@ -27,7 +27,7 @@ public class PostDetailAction implements Action{
 		int id = Integer.parseInt(idString);
 		
 		//2> DAO 연결해서 Post postEntity = 상세보기(id) 함수 호출
-		PostDao dao = new PostDao();
+		PostDao dao =  PostDao.getInstance();
 		//추가 : 조회수 증가
 		int result = dao.조회수증가(id);
 		if(result == 1) {

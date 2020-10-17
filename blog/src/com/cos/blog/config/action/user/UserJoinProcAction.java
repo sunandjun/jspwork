@@ -14,13 +14,19 @@ public class UserJoinProcAction implements Action{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 회원가입 진행 (insert) Model로 이동
 			System.out.println("Usercontroller : joinProc : ");
-			User user = new User(
+			/*User user = new User(
 					request.getParameter("username"),
 					request.getParameter("password"),
 					request.getParameter("email"),
 					request.getParameter("address")
-					);
-			UserDao userDao = new UserDao();
+					);*/
+			User user = User.builder()
+					.username(request.getParameter("username"))
+					.password(request.getParameter("password"))
+					.email(request.getParameter("email"))
+					.address(request.getParameter("password"))
+					.build();
+			UserDao userDao = UserDao.getInstance();
 			userDao.회원가입(user);
 			//2. 로그인 페이지 이동 Redirect
 			response.sendRedirect("/user/loginForm.jsp");

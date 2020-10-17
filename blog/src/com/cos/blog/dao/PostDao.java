@@ -10,6 +10,12 @@ import com.cos.blog.config.DBConn;
 import com.cos.blog.model.Post;
 
 public class PostDao {
+	
+	private PostDao() {};
+	private static PostDao instance = new PostDao();
+	public static PostDao getInstance() {
+		return instance;
+	}
 	public int 글쓰기(Post post) {
 		String sql = "INSERT INTO post (title,content,readCount,createDate,userId) "
 				+ "VALUES	 (?,?,?,NOW(),?) ";
@@ -61,14 +67,19 @@ public class PostDao {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Post post = new Post(
-										rs.getInt("id"),
-										rs.getString("title"),
-										rs.getString("content"),
-										rs.getInt("readCount"),
-										rs.getTimestamp("createDate"),
-										rs.getInt("userId")
-										);
+				/*
+				 * Post post = new Post( rs.getInt("id"), rs.getString("title"),
+				 * rs.getString("content"), rs.getInt("readCount"),
+				 * rs.getTimestamp("createDate"), rs.getInt("userId") );
+				 */
+				Post post = Post.builder()
+						.id(rs.getInt("id"))
+						.title( rs.getString("title"))
+						.content( rs.getString("content"))
+						.readCount( rs.getInt("readCount"))
+						.createDate(rs.getTimestamp("createDate"))
+						.userId(rs.getInt("userId"))
+						.build();
 				posts.add(post);
 			}
 			
@@ -85,7 +96,7 @@ public class PostDao {
 	
 	public Post 상세보기(int id) {
 		String sql = "SELECT * FROM post WHERE id = ?";  
-		Post post = new Post();
+		Post post = Post.builder().build();
 		Connection conn = DBConn.getInstance();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -137,6 +148,25 @@ public class PostDao {
 		}catch (Exception e) {
 		// TODO: handle exception
 			System.out.println("삭제하기" + e.getMessage());
+		} 			
+		return -1;
+	}
+	
+	public int 수정하기(Post post) {
+		String sql = "UPDATE  post SET title =?,content=?,createDate=now() "
+				+ "WHERE  id=? ";
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, post.getTitle());
+			pstmt.setString(2, post.getContent());
+			pstmt.setInt(3, post.getId());
+			
+			return pstmt.executeUpdate();
+		
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("수정하기 error : " + e.getMessage());
 		} 			
 		return -1;
 	}

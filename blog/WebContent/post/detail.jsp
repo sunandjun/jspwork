@@ -5,7 +5,8 @@
 <div class="container">
 	<c:if test="${sessionScope.principal.id == post.userId }">
 		<br /> <br />
-		<a herf="/post?cmd=updateForm" class="btn btn-warning">수정</a>
+		<a href="/post?cmd=updateForm&id=${post.id }" 
+			class="btn btn-warning">수정</a>
 		<button onclick="postDelete(${post.id})" class="btn btn-danger">삭제</button>
 	</c:if>
 	<br /> <br />
@@ -52,11 +53,6 @@
 		//fetch 는 비동기 함수이다 
 		//fetch는 Promise 를 가지고 있다.
 		
-		
-		console.log(1);
-		console.log(2);
-		console.log(3);
-		console.log(4);
 	}
 </script>
 
