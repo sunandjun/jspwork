@@ -21,6 +21,17 @@
 </c:forEach>
 
 	<br />
+	<ul class="pagination justify-content-center">
+		<!-- page-item disabled 사용 안되게함 -->
+		<li class="page-item" >
+			<a class="page-link" href="/post?cmd=list&page=${param.page-1 }">Prev</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="/post?cmd=list&page=${param.page+1 }">Next</a>
+		</li>
+	</ul>
+
+	<br />
 </div>
 
 <%@ include file="../layout/footer.jsp"%>

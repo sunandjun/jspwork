@@ -57,12 +57,13 @@ public class PostDao {
 		return -1;
 	}
 	
-	public List<Post> 글목록() {
-		String sql = "SELECT * FROM post ORDER BY id DESC";  //DESC 내림차순 정리 ASC 오름차순
+	public List<Post> 글목록(int page) {
+		String sql = "SELECT * FROM post ORDER BY id DESC limit ?,3";  //DESC 내림차순 정리 ASC 오름차순
 		List<Post> posts = new ArrayList<>();
 		Connection conn = DBConn.getInstance();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, page);
 					
 			ResultSet rs = pstmt.executeQuery();
 			
