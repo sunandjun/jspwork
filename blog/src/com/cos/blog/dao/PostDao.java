@@ -171,4 +171,26 @@ public class PostDao {
 		} 			
 		return -1;
 	}
+	
+	public int 글총갯수() {
+		String sql = "SELECT count(*) FROM post;";  
+		int count=0;
+		Connection conn = DBConn.getInstance();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+					
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}			
+			System.out.println("글 총 갯수는 : "+count);
+			return count;
+		
+		}catch (Exception e) {
+		// TODO: handle exception
+			System.out.println("글총갯수 error : " + e.getMessage());
+		} 			
+		return 0;
+	}
 }

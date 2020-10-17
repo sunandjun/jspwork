@@ -25,10 +25,12 @@ public class PostListAction implements Action{
 		}
 		
 		PostDao postDao =  PostDao.getInstance();
-		List<Post> posts = postDao.글목록(page); 
+		List<Post> posts = postDao.글목록(page);
 		
-		//SELECT count(*) FROM post;
+		int count = postDao.글총갯수();
 		
+
+		request.setAttribute("totalCount", count);
 		request.setAttribute("posts", posts);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/post/list.jsp");
