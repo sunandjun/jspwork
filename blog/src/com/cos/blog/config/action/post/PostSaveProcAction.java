@@ -20,19 +20,28 @@ public class PostSaveProcAction implements Action{
 		//1세션확인
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("principal");   
-		int userId = Integer.parseInt( request.getParameter("userId"));
 		
-		if(user == null) {
-			return;
-		}else if(user.getId() != userId) {
+		String id = request.getParameter("userId");
+		if( id == null) {
+			System.out.println("id == null");
 			return;
 		}
+		int userId = Integer.parseInt(id);
+		
+		if(user == null) {
+			System.out.println("(User)session.getAttribute(\"principal\") == null ");
+			return;
+		}else if(user.getId() != userId) {
+			System.out.println("user.getId() != userId");
+			return;
+		}
+		
 		//2공백 null 확인
 		//3값 검증
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
+
 		
 		System.out.println("title = " + title);
 		System.out.println("content = " + content);

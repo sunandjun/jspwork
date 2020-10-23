@@ -36,6 +36,7 @@ public class UserUpdateProcAction implements Action {
 		//1.세션확인
 		HttpSession session = request.getSession();
 		if(session.getAttribute("principal") == null) {
+			System.out.println("session.principal 이 null 입니다");
 			return;
 		}
 		//2.데이터 null ,"" 확인
@@ -73,6 +74,8 @@ public class UserUpdateProcAction implements Action {
 		
 		if(result == 1) {
 			session.setAttribute("principal", user);
+		}else {
+			System.out.println("DB 저장 실패 했습니다.");
 		}
 
 		response.sendRedirect("index.jsp");

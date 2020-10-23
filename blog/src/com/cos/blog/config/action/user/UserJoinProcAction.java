@@ -24,7 +24,7 @@ public class UserJoinProcAction implements Action{
 					.username(request.getParameter("username"))
 					.password(request.getParameter("password"))
 					.email(request.getParameter("email"))
-					.address(request.getParameter("password"))
+					.address(request.getParameter("address"))
 					.build();
 			UserDao userDao = UserDao.getInstance();
 			userDao.회원가입(user);
